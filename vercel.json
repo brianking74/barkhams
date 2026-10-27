@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/tds-checkout", "destination": "/contact", "permanent": true },
+    { "source": "/projects", "destination": "/services", "permanent": true }
+  ]
+}

@@ -1,49 +1,51 @@
 ---
 import Base from '../layouts/Base.astro';
+
 const services = [
-{ n: '01', title: 'SEO', desc: 'Technical audits, on-page optimisation and authority building that compounds over time.' },
-{ n: '02', title: 'Paid Media', desc: 'Google, Meta and LinkedIn campaigns engineered around one metric: profitable growth.' },
-{ n: '03', title: 'Content Marketing', desc: 'Strategy, copy and editorial that earns attention instead of renting it.' },
-{ n: '04', title: 'Social Media', desc: 'Organic content, community management and creator partnerships that build brand affinity.' },
-{ n: '05', title: 'Email & CRM', desc: 'Lifecycle flows and automation that turn one-time buyers into repeat revenue.' },
-{ n: '06', title: 'Web & CRO', desc: 'High-converting landing pages and continuous testing to squeeze more from every click.' },
+  { n: '01', title: 'SEO', desc: 'Technical audits, on-page optimisation and authority building that compounds over time.' },
+  { n: '02', title: 'Paid Media', desc: 'Google, Meta and LinkedIn campaigns engineered around one metric: profitable growth.' },
+  { n: '03', title: 'Content Marketing', desc: 'Strategy, copy and editorial that earns attention instead of renting it.' },
+  { n: '04', title: 'Social Media', desc: 'Organic content, community management and partnerships that build brand affinity.' },
+  { n: '05', title: 'Email & CRM', desc: 'Lifecycle flows and automation that turn buyers into repeat revenue.' },
+  { n: '06', title: 'Web & CRO', desc: 'Fast, high-converting pages and continuous testing.' },
 ];
+---
 <Base>
-<section class="mx-auto max-w-6xl px-6 pt-28 pb-20">
-<p class="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-sm text-white/70">
-<span class="h-2 w-2 rounded-full bg-accent"></span> Digital Marketing Agency
-</p>
-<h1 class="mt-8 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
-Marketing that makes brands <span class="text-accent">impossible to ignore</span>.
-</h1>
-<p class="mt-6 max-w-xl text-lg text-white/60">
-Barkhams plans, launches and scales campaigns that turn attention into revenue. Strategy-first, data-backed, and allergic to vanity metrics.
-</p>
-<div class="mt-10 flex flex-wrap gap-4">
-<a href="/contact" class="rounded-full bg-accent px-7 py-3 font-semibold text-ink transition hover:opacity-90">Start a project</a>
-<a href="/services" class="rounded-full border border-white/20 px-7 py-3 font-semibold text-white transition hover:border-white/50">Our services</a>
-</div>
-</section>
+  <section class="mx-auto max-w-6xl px-6 pt-28 pb-20">
+    <p class="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-sm text-white/70">
+      <span class="h-2 w-2 rounded-full bg-accent"></span> Digital Marketing Agency
+    </p>
+    <h1 class="mt-8 font-display text-5xl font-bold leading-[1.05] tracking-tight md:text-7xl">
+      Marketing that makes brands <span class="text-accent">impossible to ignore</span>.
+    </h1>
+    <p class="mt-6 max-w-xl text-lg text-white/60">
+      Barkhams plans, launches and scales campaigns that turn attention into revenue. Strategy-first, data-backed, and allergic to vanity metrics.
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a href="/contact" class="rounded-full bg-accent px-7 py-3 font-semibold text-ink transition hover:opacity-90">Start a project</a>
+      <a href="/services" class="rounded-full border border-white/20 px-7 py-3 font-semibold text-white transition hover:border-white/50">Our services</a>
+    </div>
+  </section>
 
-<section class="mx-auto max-w-6xl px-6 py-20">
-<p class="text-sm uppercase tracking-widest text-accent">What we do</p>
-<h2 class="mt-3 max-w-lg font-display text-4xl font-bold md:text-5xl">Full-funnel services under one roof.</h2>
-<div class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
-{services.map((s) => (
-<a href="/services" class="group bg-ink p-8 transition hover:bg-panel">
-<span class="font-display text-sm text-accent">{s.n}</span>
-<h3 class="mt-4 font-display text-xl font-semibold">{s.title}</h3>
-<p class="mt-3 text-sm leading-relaxed text-white/60">{s.desc}</p>
-</a>
-))}
-</div>
-</section>
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <p class="text-sm uppercase tracking-widest text-accent">What we do</p>
+    <h2 class="mt-3 max-w-lg font-display text-4xl font-bold md:text-5xl">Full-funnel services under one roof.</h2>
+    <div class="mt-12 grid gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+      {services.map((s) => (
+        <a href="/services" class="group bg-ink p-8 transition hover:bg-panel">
+          <span class="font-display text-sm text-accent">{s.n}</span>
+          <h3 class="mt-4 font-display text-xl font-semibold">{s.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-white/60">{s.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
 
-<section class="mx-auto max-w-6xl px-6 py-20">
-<div class="rounded-3xl bg-accent px-8 py-16 text-center text-ink md:px-16">
-<h2 class="font-display text-4xl font-bold md:text-6xl">Ready to grow?</h2>
-<p class="mx-auto mt-4 max-w-md font-medium text-ink/70">Tell us where you want to be in 12 months. We'll map the route.</p>
-<a href="/contact" class="mt-8 inline-block rounded-full bg-ink px-8 py-3 font-semibold text-white transition hover:opacity-90">Get in touch</a>
-</div>
-</section>
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <div class="rounded-3xl bg-accent px-8 py-16 text-center text-ink md:px-16">
+      <h2 class="font-display text-4xl font-bold md:text-6xl">Ready to grow?</h2>
+      <p class="mx-auto mt-4 max-w-md font-medium text-ink/70">Tell us where you want to be in 12 months. We'll map the route.</p>
+      <a href="/contact" class="mt-8 inline-block rounded-full bg-ink px-8 py-3 font-semibold text-white transition hover:opacity-90">Get in touch</a>
+    </div>
+  </section>
 </Base>

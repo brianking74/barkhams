@@ -1,13 +1,12 @@
-```astro
+---
 import Base from '../layouts/Base.astro';
-const email = 'barkhams.digial@gmail.com';
+---
 <Base title="Contact — Barkhams" description="Start a project with Barkhams.">
-<section class="mx-auto max-w-3xl px-6 py-24 text-center">
-<p class="text-sm uppercase tracking-widest text-accent">Contact</p>
-<h1 class="mt-3 font-display text-5xl font-bold md:text-6xl">Let's talk.</h1>
-<p class="mx-auto mt-6 max-w-md text-white/60">Tell us about your goals and we'll come back within one business day with first thoughts — not a sales script.</p>
-<a href={`mailto:${email}`} class="mt-10 inline-block rounded-full bg-accent px-8 py-3 font-semibold text-ink transition hover:opacity-90">Email us</a>
-<p class="mt-6 text-white/50">{email}</p>
-</section>
+  <section class="mx-auto max-w-3xl px-6 py-24 text-center">
+    <p class="text-sm uppercase tracking-widest text-accent">Contact</p>
+    <h1 class="mt-3 font-display text-5xl font-bold md:text-6xl">Let's talk.</h1>
+    <p class="mx-auto mt-6 max-w-md text-white/60">Tell us about your goals and we'll come back within one business day with first thoughts — not a sales script.</p>
+    <a href="mailto:barkhams.digial@gmail.com" class="mt-10 inline-block rounded-full bg-accent px-8 py-3 font-semibold text-ink transition hover:opacity-90">Email us</a>
+    <p class="mt-6 text-white/50">barkhams.digial@gmail.com</p>
+  </section>
 </Base>
-```

@@ -25,6 +25,13 @@ const testimonial = {
   quote: 'Working with Barkhams transformed our online presence. Enquiries are up, the brand finally looks the part, and the reporting means we always know what is working.',
   name: 'Client name — Company',
 };
+
+// Real titles from the old site — swap images + links when the blog goes live
+const articles = [
+  { date: 'Jul 24, 2026', tag: 'Featured', title: 'Best Practices for Content Marketing' },
+  { date: 'Jul 24, 2026', tag: 'News', title: 'AI in Marketing' },
+  { date: 'Jul 24, 2026', tag: 'News', title: 'Managing Social Media Campaigns' },
+];
 ---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
@@ -120,6 +127,29 @@ const testimonial = {
     </div>
   </section>
 
+  <section class="mt-8 bg-black/5 md:mt-24">
+    <div class="mx-auto max-w-6xl px-6 py-20">
+      <h2 class="text-center font-display text-4xl font-extrabold tracking-tight md:text-6xl">
+        Read our articles<br />and news.
+      </h2>
+      <div class="mt-14 grid gap-10 md:grid-cols-3">
+        {articles.map((a) => (
+          <a href="/insights" class="group block">
+            <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">
+              <span class="absolute inset-0 flex items-center justify-center px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
+            </div>
+            <p class="mt-5 text-xs text-black/50">{a.date} · {a.tag}</p>
+            <h3 class="mt-2 font-display text-2xl font-bold">{a.title}</h3>
+            <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest group-hover:opacity-70">READ MORE →</span>
+          </a>
+        ))}
+      </div>
+      <div class="mt-14 text-center">
+        <a href="/insights" class="inline-block border-b-2 border-black pb-1 text-sm font-bold tracking-wide">ALL ARTICLES →</a>
+      </div>
+    </div>
+  </section>
+
   <section class="mx-auto max-w-6xl px-6 pb-24">
     <div class="rounded-3xl bg-accent px-8 py-16 text-center md:px-16">
       <h2 class="font-display text-4xl font-extrabold tracking-tight md:text-6xl">Have a project in mind?</h2>
@@ -141,3 +171,31 @@ const testimonial = {
     .animate-wipe, .wipe-hidden, .wipe-run { animation: none !important; clip-path: none !important; }
   }
 </style>
+
+<script>
+  const wipes = document.querySelectorAll('[data-wipe]');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    // leave images fully visible — no animation
+  } else {
+    const reveal = (el) => {
+      el.classList.remove('wipe-hidden');
+      el.classList.add('wipe-run');
+    };
+    wipes.forEach((el) => {
+      el.classList.add('wipe-hidden');
+    });
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            reveal(entry.target);
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    wipes.forEach((el) => io.observe(el));
+  }
+</script>

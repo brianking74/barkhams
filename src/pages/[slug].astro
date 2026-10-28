@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+---
+<Base title={`${post.data.title} — Barkhams`} description={post.data.description}>
+<article class="mx-auto max-w-3xl px-6 py-20">
+<a href="/insights" class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">← All articles</a>
+<p class="mt-8 text-xs text-black/50">{post.data.category} · {fmt(post.data.pubDate)}</p>
+<h1 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">{post.data.title}</h1>
+<div class="post-content mt-10">
+<Content />
+</div>
+<div class="mt-16 rounded-3xl bg-accent px-8 py-12 text-center">
+<h2 class="font-display text-2xl font-extrabold tracking-tight md:text-3xl">Have a project in mind?</h2>
+<a href="/contact" class="mt-6 inline-block rounded-full bg-ink px-7 py-2.5 text-sm font-semibold text-white transition hover:opacity-80">Get in touch</a>
+</div>
+</article>
+</Base>

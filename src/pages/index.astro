@@ -45,7 +45,7 @@ const testimonial = {
     <div class="absolute inset-x-0 bottom-0 top-0 bg-accent md:top-32"></div>
     <div class="relative grid md:grid-cols-2">
       <div class="relative h-[320px] md:h-[640px]">
-        <img data-wipe src="/team-photo.jpg" alt="Barkhams team member at work" class="wipe-ready absolute inset-0 h-full w-full object-cover" />
+        <img data-wipe src="/team-photo.jpg" alt="Barkhams team member at work" class="absolute inset-0 h-full w-full object-cover" />
       </div>
       <div class="flex flex-col justify-center px-6 py-16 md:mt-32 md:min-h-[640px] md:py-0 md:pr-16 lg:pl-20 lg:pr-24">
         <h2 class="font-display text-4xl font-extrabold leading-[1.02] tracking-tight md:text-6xl">Unlock revenue growth for your business.</h2>
@@ -82,7 +82,7 @@ const testimonial = {
           {leftProjects.map((p) => (
             <a href={p.url} target="_blank" rel="noopener" class="group block">
               <div class="overflow-hidden">
-                <img data-wipe src={p.img} alt={`${p.title} website`} class="wipe-ready aspect-[4/5] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+                <img data-wipe src={p.img} alt={`${p.title} website`} class="aspect-[4/5] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
               </div>
               <p class="mt-5 text-xs text-black/50">{p.tags}</p>
               <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
@@ -94,7 +94,7 @@ const testimonial = {
           {rightProjects.map((p) => (
             <a href={p.url} target="_blank" rel="noopener" class="group block">
               <div class="overflow-hidden">
-                <img data-wipe src={p.img} alt={`${p.title} website`} class="wipe-ready aspect-[4/3] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+                <img data-wipe src={p.img} alt={`${p.title} website`} class="aspect-[4/3] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
               </div>
               <p class="mt-5 text-xs text-black/50">{p.tags}</p>
               <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
@@ -110,7 +110,7 @@ const testimonial = {
     <div class="absolute inset-x-0 bottom-0 top-0 bg-accent md:top-32"></div>
     <div class="relative grid md:grid-cols-2">
       <div class="relative order-1 h-[320px] md:order-2 md:h-[640px]">
-        <img data-wipe src="/client-photo.jpg" alt="Barkhams client" class="wipe-ready absolute inset-0 h-full w-full object-cover" />
+        <img data-wipe src="/client-photo.jpg" alt="Barkhams client" class="absolute inset-0 h-full w-full object-cover" />
       </div>
       <div class="order-2 flex flex-col justify-center px-6 py-16 md:order-1 md:mt-32 md:min-h-[640px] md:py-0 md:pr-16 lg:pl-24 lg:pr-20">
         <p class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Testimonials</p>
@@ -135,22 +135,31 @@ const testimonial = {
     to { clip-path: inset(0 0 0 0); }
   }
   .animate-wipe { animation: wipe-in 1.2s cubic-bezier(0.65, 0, 0.35, 1) both; }
-  .wipe-ready { clip-path: inset(0 100% 0 0); }
+  .wipe-hidden { clip-path: inset(0 100% 0 0); }
   .wipe-run { animation: wipe-in 1.1s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
   @media (prefers-reduced-motion: reduce) {
-    .animate-wipe, .wipe-ready, .wipe-run { animation: none !important; clip-path: none !important; }
+    .animate-wipe, .wipe-hidden, .wipe-run { animation: none !important; clip-path: none !important; }
   }
 </style>
 
 <script>
   const wipes = document.querySelectorAll('[data-wipe]');
-  const show = (el) => el.classList.add('wipe-run');
-  if ('IntersectionObserver' in window) {
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    // leave images fully visible — no animation
+  } else {
+    const reveal = (el) => {
+      el.classList.remove('wipe-hidden');
+      el.classList.add('wipe-run');
+    };
+    wipes.forEach((el) => {
+      el.classList.add('wipe-hidden');
+    });
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            show(entry.target);
+            reveal(entry.target);
             io.unobserve(entry.target);
           }
         }
@@ -158,7 +167,5 @@ const testimonial = {
       { threshold: 0.2 }
     );
     wipes.forEach((el) => io.observe(el));
-  } else {
-    wipes.forEach(show);
   }
 </script>

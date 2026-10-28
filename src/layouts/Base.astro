@@ -15,11 +15,12 @@ const navLinks = [
   { href: '/about', label: 'About' },
 ];
 
-const footerLinks = [
+const footerNav = [
+  { href: '/about', label: 'About Us' },
   { href: '/services', label: 'Services' },
-  { href: '/insights', label: 'Insights' },
-  { href: '/about', label: 'About' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/contact', label: 'Contact', linkedin: true },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
+  { href: '/terms', label: 'Terms & Conditions' },
 ];
 ---
 <!doctype html>
@@ -59,18 +60,30 @@ const footerLinks = [
       </div>
     </header>
     <main><slot /></main>
-    <footer class="border-t border-black/10">
-      <div class="mx-auto max-w-6xl px-6 py-16">
-        <p class="text-sm font-medium text-black/50">Have a project in mind?</p>
-        <a href={`mailto:${email}`} class="mt-2 block break-all font-display text-2xl font-extrabold tracking-tight transition hover:opacity-70 md:text-4xl">{email}</a>
-        <nav class="mt-10 flex flex-wrap gap-x-8 gap-y-2">
-          {footerLinks.map((l) => (
-            <a href={l.href} class="text-sm text-black/60 hover:text-black">{l.label}</a>
-          ))}
-        </nav>
-        <div class="mt-12 border-t border-black/10 pt-6 text-sm text-black/40">
-          <p>© {year} Barkhams. All rights reserved.</p>
+    <section class="mt-8 bg-black/5 md:mt-24">
+      <div class="mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 md:grid-cols-2 md:py-28">
+        <h2 class="font-display text-4xl font-extrabold tracking-tight md:text-6xl">Let's Work Together</h2>
+        <div>
+          <p class="max-w-md text-black/60">We are a digital agency that helps businesses develop immersive and engaging user experiences.</p>
+          <a href={`mailto:${email}`} class="mt-8 inline-block rounded-full bg-ink px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent hover:text-ink">Let's Talk</a>
         </div>
+      </div>
+    </section>
+    <footer class="border-t border-ink">
+      <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-6 py-6">
+        {footerNav.map((l) => (
+          <span class="flex items-center gap-1.5">
+            <a href={l.href} class="text-sm font-medium text-black/70 transition hover:text-black">{l.label}</a>
+            {l.linkedin && (
+              <a href="https://www.linkedin.com/company/barkhamsdigital" target="_blank" rel="noopener" aria-label="Barkhams on LinkedIn" class="text-black/70 transition hover:text-black">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            )}
+          </span>
+        ))}
+      </div>
+      <div class="mx-auto max-w-6xl px-6 pb-6 text-center text-xs text-black/40">
+        <p>© {year} Barkhams. All rights reserved.</p>
       </div>
     </footer>
   </body>

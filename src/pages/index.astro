@@ -11,13 +11,13 @@ const services = [
 ];
 
 const leftProjects = [
-  { img: '/project1.png', tags: 'Web Design / Development', title: 'HK Drinks', url: 'https://www.hkdrinks.shop/' },
-  { img: '/project3.png', tags: 'Web Design / Development', title: 'Job Tailor', url: 'https://job-tailor-pi.vercel.app/' },
+  { img: '/project1.png', aspect: 'aspect-[4/5]', tags: 'Web Design / Development', title: 'HK Drinks', url: 'https://www.hkdrinks.shop/' },
+  { img: '/project3.png', aspect: 'aspect-[4/3]', tags: 'Web Design / Development', title: 'Job Tailor', url: 'https://job-tailor-pi.vercel.app/' },
 ];
 
 const rightProjects = [
-  { img: '/project2.png', tags: 'Web Design / Development', title: 'Performance Review', url: 'https://performance-review.netlify.app' },
-  { img: '/project4.png', tags: 'Web Design / Development', title: '28one', url: 'https://28one.com/' },
+  { img: '/project2.png', aspect: 'aspect-[4/3]', tags: 'Web Design / Development', title: 'Drinks Distributor: Staff Portal', url: 'https://performance-review.netlify.app' },
+  { img: '/project4.png', aspect: 'aspect-[4/3]', tags: 'Web Design / Development', title: '28one', url: 'https://28one.com/' },
 ];
 
 // TODO: replace with a real client quote (text + name) before launch
@@ -89,7 +89,7 @@ const articles = [
           {leftProjects.map((p) => (
             <a href={p.url} target="_blank" rel="noopener" class="group block">
               <div class="overflow-hidden">
-                <img data-wipe src={p.img} alt={`${p.title} website`} class="aspect-[4/5] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+                <img data-wipe src={p.img} alt={`${p.title} website`} class={`${p.aspect} w-full object-cover object-top transition duration-500 group-hover:scale-105`} />
               </div>
               <p class="mt-5 text-xs text-black/50">{p.tags}</p>
               <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
@@ -101,7 +101,7 @@ const articles = [
           {rightProjects.map((p) => (
             <a href={p.url} target="_blank" rel="noopener" class="group block">
               <div class="overflow-hidden">
-                <img data-wipe src={p.img} alt={`${p.title} website`} class="aspect-[4/3] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+                <img data-wipe src={p.img} alt={`${p.title} website`} class={`${p.aspect} w-full object-cover object-top transition duration-500 group-hover:scale-105`} />
               </div>
               <p class="mt-5 text-xs text-black/50">{p.tags}</p>
               <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>

@@ -1,30 +1,35 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-export async function getStaticPaths() {
-const posts = await getCollection('blog', ({ data }) => !data.draft);
-return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
-}
-
-const { post } = Astro.props;
-const { Content } = await render(post);
-const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 ---
-<Base title={`${post.data.title} — Barkhams`} description={post.data.description}>
-<article class="mx-auto max-w-3xl px-6 py-20">
-<a href="/insights" class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">← All articles</a>
-<p class="mt-8 text-xs text-black/50">{post.data.category} · {fmt(post.data.pubDate)}</p>
-<h1 class="mt-4 font-display text-4xl font-extrabold tracking-tight md:text-5xl">{post.data.title}</h1>
-{post.data.image && (
-<img src={post.data.image} alt={post.data.title} class="mt-10 w-full" />
-)}
-<div class="post-content mt-10">
-<Content />
-</div>
-<div class="mt-16 rounded-3xl bg-accent px-8 py-12 text-center">
-<h2 class="font-display text-2xl font-extrabold tracking-tight md:text-3xl">Have a project in mind?</h2>
-<a href="/contact" class="mt-6 inline-block rounded-full bg-ink px-7 py-2.5 text-sm font-semibold text-white transition hover:opacity-80">Get in touch</a>
-</div>
-</article>
+<Base title="Insights — Barkhams" description="Articles and news from the Barkhams team.">
+  <section class="mx-auto max-w-6xl px-6 py-20">
+    <p class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Insights</p>
+    <h1 class="mt-4 font-display text-5xl font-extrabold tracking-tight md:text-7xl">Articles & news.</h1>
+    {posts.length === 0 ? (
+      <p class="mt-10 max-w-md text-black/60">New articles are on the way. Check back soon.</p>
+    ) : (
+      <div class="mt-14 grid gap-10 md:grid-cols-3">
+        {posts.map((p) => (
+          <a href={`/${p.id}`} class="group block">
+            {p.data.image ? (
+              <img src={p.data.image} alt={p.data.title} class="aspect-square w-full object-cover" />
+            ) : (
+              <div class="flex aspect-square w-full items-center justify-center border border-dashed border-black/20 bg-black/[0.03]">
+                <span class="px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
+              </div>
+            )}
+            <p class="mt-5 text-xs text-black/50">{p.data.category} · {fmt(p.data.pubDate)}</p>
+            <h2 class="mt-2 font-display text-2xl font-bold group-hover:opacity-70">{p.data.title}</h2>
+            <p class="mt-2 text-sm text-black/60">{p.data.description}</p>
+            <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest">READ MORE →</span>
+          </a>
+        ))}
+      </div>
+    )}
+  </section>
 </Base>

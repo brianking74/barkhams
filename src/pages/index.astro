@@ -141,31 +141,3 @@ const testimonial = {
     .animate-wipe, .wipe-hidden, .wipe-run { animation: none !important; clip-path: none !important; }
   }
 </style>
-
-<script>
-  const wipes = document.querySelectorAll('[data-wipe]');
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced || !('IntersectionObserver' in window)) {
-    // leave images fully visible — no animation
-  } else {
-    const reveal = (el) => {
-      el.classList.remove('wipe-hidden');
-      el.classList.add('wipe-run');
-    };
-    wipes.forEach((el) => {
-      el.classList.add('wipe-hidden');
-    });
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            reveal(entry.target);
-            io.unobserve(entry.target);
-          }
-        }
-      },
-      { threshold: 0.2 }
-    );
-    wipes.forEach((el) => io.observe(el));
-  }
-</script>

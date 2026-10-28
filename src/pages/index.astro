@@ -9,6 +9,16 @@ const services = [
   { n: '05', title: 'Email & CRM', desc: 'Lifecycle flows and automation that turn buyers into repeat revenue.' },
   { n: '06', title: 'Web & CRO', desc: 'Fast, high-converting pages and continuous testing.' },
 ];
+
+const leftProjects = [
+  { img: '/project1.png', tags: 'Web Design / Development', title: 'HK Drinks', url: 'https://www.hkdrinks.shop/' },
+  { img: '/project3.png', tags: 'Web Design / Development', title: 'Job Tailor', url: 'https://job-tailor-pi.vercel.app/' },
+];
+
+const rightProjects = [
+  { img: '/project2.png', tags: 'Web Design / Development', title: 'Performance Review', url: 'https://performance-review.netlify.app' },
+  { img: '/project4.png', tags: 'Web Design / Development', title: '28one', url: 'https://28one.com/' },
+];
 ---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
@@ -55,6 +65,38 @@ const services = [
           <p class="max-w-xl pb-8 text-black/60 md:ml-14">{s.desc}</p>
         </details>
       ))}
+    </div>
+  </section>
+
+  <section class="relative mt-8 md:mt-24">
+    <div class="absolute inset-x-0 bottom-0 top-0 bg-black/5 md:top-40"></div>
+    <div class="relative mx-auto max-w-6xl px-6 py-16 md:py-0 md:pb-24">
+      <div class="grid gap-x-10 gap-y-16 md:grid-cols-2">
+        <div class="space-y-16">
+          {leftProjects.map((p) => (
+            <a href={p.url} target="_blank" rel="noopener" class="group block">
+              <div class="overflow-hidden">
+                <img src={p.img} alt={`${p.title} website`} class="aspect-[4/5] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+              </div>
+              <p class="mt-5 text-xs text-black/50">{p.tags}</p>
+              <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
+              <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest">VIEW PROJECT ↗</span>
+            </a>
+          ))}
+        </div>
+        <div class="space-y-16">
+          {rightProjects.map((p) => (
+            <a href={p.url} target="_blank" rel="noopener" class="group block">
+              <div class="overflow-hidden">
+                <img src={p.img} alt={`${p.title} website`} class="aspect-[4/3] w-full object-cover object-top transition duration-500 group-hover:scale-105" />
+              </div>
+              <p class="mt-5 text-xs text-black/50">{p.tags}</p>
+              <h3 class="mt-2 font-display text-2xl font-bold md:text-3xl">{p.title}</h3>
+              <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest">VIEW PROJECT ↗</span>
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 

@@ -1,9 +1,9 @@
 ---
-md
 title: "Enhance Visibility with Expert SEO Consultancy Services"
 description: "How expert local SEO services help businesses gain visibility in their community, attract nearby customers and drive measurable growth."
 pubDate: 2025-10-24
 category: "SEO"
+---
 In today's digital world, standing out online is crucial for any business. With millions of websites competing for attention, how can your business be found by the right customers? The answer lies in effective search engine optimisation (SEO). More specifically, local SEO services can help your business gain visibility in your community and attract nearby customers. This blog post explores how expert local SEO services can enhance your online presence and drive growth.
 
 Understanding Local SEO Services and Their Importance

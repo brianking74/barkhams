@@ -1,6 +1,9 @@
 {
   "redirects": [
     { "source": "/tds-checkout", "destination": "/contact", "permanent": true },
-    { "source": "/projects", "destination": "/services", "permanent": true }
+    { "source": "/projects", "destination": "/services", "permanent": true },
+    { "source": "/from-local-to-national-scaling-your-distribution-with-strategic-trucking", "destination": "/insights", "permanent": true },
+    { "source": "/behind-the-scenes-the-technology-driving-todays-trucking-efficiency", "destination": "/insights", "permanent": true },
+    { "source": "/ai-marketing-tools-revolutionizing-business-with-gensparks-super-agent", "destination": "/insights", "permanent": true }
   ]
 }

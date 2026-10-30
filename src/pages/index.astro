@@ -30,8 +30,7 @@ const testimonial = {
 const articles = [
   { date: 'Jul 24, 2026', tag: 'Featured', title: 'Best Practices for Content Marketing' },
   { date: 'Jul 24, 2026', tag: 'News', title: 'AI in Marketing' },
-  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/' },];
----
+  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/', image: '/seo-consultancy-hero.jpg' },---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
     <p class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Digital Marketing Agency</p>
@@ -133,9 +132,13 @@ const articles = [
       <div class="mt-14 grid gap-10 md:grid-cols-3">
         {articles.map((a) => (
                   <a href={a.url} class="group block">
-            <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">
-              <span class="absolute inset-0 flex items-center justify-center px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
-            </div>
+              {a.image ? (
+              <img src={a.image} alt={a.title} class="aspect-square w-full object-cover" />
+            ) : (
+              <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">
+                <span class="absolute inset-0 flex items-center justify-center px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
+              </div>
+            )}
             <p class="mt-5 text-xs text-black/50">{a.date} · {a.tag}</p>
             <h3 class="mt-2 font-display text-2xl font-bold">{a.title}</h3>
             <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest group-hover:opacity-70">READ MORE →</span>

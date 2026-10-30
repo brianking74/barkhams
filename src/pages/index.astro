@@ -30,8 +30,7 @@ const testimonial = {
 const articles = [
   { date: 'Jul 24, 2026', tag: 'Featured', title: 'Best Practices for Content Marketing' },
   { date: 'Jul 24, 2026', tag: 'News', title: 'AI in Marketing' },
-  { date: 'Jul 24, 2026', tag: 'News', title: 'Managing Social Media Campaigns' },
-];
+  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/' },];
 ---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
@@ -133,7 +132,7 @@ const articles = [
       </h2>
       <div class="mt-14 grid gap-10 md:grid-cols-3">
         {articles.map((a) => (
-          <a href="/insights" class="group block">
+                  <a href={a.url} class="group block">
             <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">
               <span class="absolute inset-0 flex items-center justify-center px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
             </div>

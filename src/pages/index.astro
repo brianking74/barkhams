@@ -30,11 +30,14 @@ const testimonial = {
 const articles = [
   { date: 'Jul 24, 2026', tag: 'Featured', title: 'Best Practices for Content Marketing', url: '/insights' },
   { date: 'Jul 24, 2026', tag: 'News', title: 'AI in Marketing', url: '/insights' },
-  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/', image: '/seo-consultancy-hero.jpg' },---
+  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/', image: '/seo-consultancy-hero.jpg' },
+];
+---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
     <p class="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Digital Marketing Agency</p>
-    <h1 class="animate-wipe mt-6 pb-4 font-display text-6xl font-extrabold leading-[0.95] tracking-tight md:text-8xl">      Next generation marketing agency.
+    <h1 class="animate-wipe mt-6 pb-4 font-display text-6xl font-extrabold leading-[0.95] tracking-tight md:text-8xl">
+      Next generation marketing agency.
     </h1>
     <p class="mt-8 max-w-xl text-lg text-black/60">
       We help businesses develop immersive, engaging brand experiences that drive top-level growth. Strategy-first, data-backed, and allergic to vanity metrics.
@@ -131,8 +134,8 @@ const articles = [
       </h2>
       <div class="mt-14 grid gap-10 md:grid-cols-3">
         {articles.map((a) => (
-                  <a href={a.url} class="group block">
-              {a.image ? (
+          <a href={a.url} class="group block">
+            {a.image ? (
               <img src={a.image} alt={a.title} class="aspect-square w-full object-cover" />
             ) : (
               <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">

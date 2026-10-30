@@ -1,5 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
 const services = [
   { n: '01', title: 'SEO', desc: 'Technical audits, on-page optimisation and authority building that compounds over time.' },
@@ -25,12 +31,6 @@ const testimonial = {
   quote: 'Working with Barkhams transformed our online presence. Enquiries are up, the brand finally looks the part, and the reporting means we always know what is working.',
   name: 'Client name — Company',
 };
-
-// Real titles from the old site — swap images + links when the blog goes live
-const articles = [
-  { date: 'Jul 24, 2026', tag: 'Featured', title: 'Best Practices for Content Marketing', url: '/insights' },
-  { date: 'Oct 1, 2025', tag: 'AI', title: 'Beyond Automation: The True Power of AI in Marketing', url: '/ai-in-marketing/', image: '/ai-marketing-hero.jpg' },  { date: 'Oct 24, 2025', tag: 'SEO', title: 'Enhance Visibility with Expert SEO Consultancy Services', url: '/enhance-visibility-with-expert-seo-consultancy-services/', image: '/seo-consultancy-hero.jpg' },
-];
 ---
 <Base>
   <section class="mx-auto max-w-6xl px-6 pt-24 pb-16">
@@ -132,17 +132,17 @@ const articles = [
         Read our articles<br />and news.
       </h2>
       <div class="mt-14 grid gap-10 md:grid-cols-3">
-        {articles.map((a) => (
-          <a href={a.url} class="group block">
-            {a.image ? (
-              <img src={a.image} alt={a.title} class="aspect-square w-full object-cover" />
+        {posts.map((p) => (
+          <a href={`/${p.id}`} class="group block">
+            {p.data.image ? (
+              <img src={p.data.image} alt={p.data.title} class="aspect-square w-full object-cover" />
             ) : (
               <div class="relative aspect-square overflow-hidden border border-dashed border-black/20 bg-white">
                 <span class="absolute inset-0 flex items-center justify-center px-6 text-center text-xs font-bold uppercase tracking-[0.2em] text-black/40">Post image</span>
               </div>
             )}
-            <p class="mt-5 text-xs text-black/50">{a.date} · {a.tag}</p>
-            <h3 class="mt-2 font-display text-2xl font-bold">{a.title}</h3>
+            <p class="mt-5 text-xs text-black/50">{p.data.category} · {fmt(p.data.pubDate)}</p>
+            <h3 class="mt-2 font-display text-2xl font-bold">{p.data.title}</h3>
             <span class="mt-4 inline-block border-b-2 border-black pb-0.5 text-xs font-bold tracking-widest group-hover:opacity-70">READ MORE →</span>
           </a>
         ))}
